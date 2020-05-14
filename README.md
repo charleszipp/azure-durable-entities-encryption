@@ -12,7 +12,7 @@ The code within this repository demonstrates a means by which durable entity sta
 
 As part of the `Configure` method in the `FunctionsStartup` class register the dependencies necessary to enable encryption
 
-Register how to resolve the encryption options/configuration. The key is expected to come from a key management solution such as Azure Key Vault.
+Register how to resolve the encryption options/configuration. The key is expected to come from a key management solution such as Azure Key Vault. See [Azure Key Vault Configuration Provider in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/key-vault-configuration?view=aspnetcore-3.1) for how to retrieve secrets from Azure Key Vault.
 
 ```csharp
 builder.Services.AddSingleton(sp => new EncryptionOptions(config["ENCRYPTIONKey"]));
