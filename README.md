@@ -4,9 +4,9 @@ The code within this repository demonstrates a means by which durable entity sta
 
 ## Dependencies
 
-[.NET Core 3.1](https://dotnet.microsoft.com/download)
-[Azure Storage Emulator](https://go.microsoft.com/fwlink/?linkid=717179&clcid=0x409)
-[Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/)
+- [.NET Core 3.1](https://dotnet.microsoft.com/download)
+- [Azure Storage Emulator](https://go.microsoft.com/fwlink/?linkid=717179&clcid=0x409)
+- [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/)
 
 ## Bootstrapping Encryption
 
