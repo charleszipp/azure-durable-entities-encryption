@@ -7,6 +7,22 @@ namespace Sample.Functions.Transfers
 {
     public class TransfersHandler
     {
+        /* TODO: Write tests to exercise the following scenarios
+ 
+         Scenario: Transfer
+	        Given account 1 with number 111 has balance of $100
+	        and account 2 with number 222 has balance of $50
+	        When transfer is made for $3 from account 1 to account 2
+	        Then account 1 should have a balance of $97
+	        and account 2 should have a balance of $53
+
+        Scenario: Transfer more than available balance
+	        Given account 1 with number 111 has balance of $100
+	        and account 2 with number 222 has balance of $50
+	        When transfer is made for $200 from account 1 to account 2
+	        Then the transfer should be rejected due to overdraft
+         
+        */
         [FunctionName(nameof(ExecuteTransfer))]
         public async Task ExecuteTransfer([OrchestrationTrigger] IDurableOrchestrationContext context)
         {
