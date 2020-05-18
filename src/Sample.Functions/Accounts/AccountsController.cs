@@ -5,17 +5,21 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Sample.Functions
+namespace Sample.Functions.Accounts
 {
     public class AccountsController
     {
-        [FunctionName(nameof(PutAccount))]
-        public Task PutAccount(
-            [HttpTrigger(AuthorizationLevel.Function, "put", Route = "accounts/{accountId}")] HttpRequestMessage request,
+        [FunctionName(nameof(PostAccount))]
+        public async Task PostAccount(
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = "accounts/{accountId}")] HttpRequestMessage request,
             string accountId,
             [DurableClient] IDurableEntityClient client
-            ) 
-            => client.SignalEntityAsync<IAccountEntity>(accountId, account => account.Set("123ABC"));
+            )
+        {
+            var account = await request.Content.ReadAsAsync<PostAccountRequest>();
+            var message = new CreateAccountMessage(account.AccountNumber, account.Balance);
+            await client.SignalEntityAsync<IAccountEntity>(accountId, account => account.Create(message));
+        }
 
         [FunctionName(nameof(GetAccount))]
         public async Task<IActionResult> GetAccount(
@@ -25,7 +29,6 @@ namespace Sample.Functions
             )
         {
             var entityStateResponse = await client.ReadEntityStateAsync<AccountEntity>(new EntityId(nameof(AccountEntity), accountId));
-            
             return entityStateResponse.EntityExists ? (ActionResult)new OkObjectResult(entityStateResponse.EntityState) : new NotFoundResult();
         }
     }

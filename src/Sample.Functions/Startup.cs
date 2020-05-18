@@ -4,8 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using Sample.Functions.Accounts;
 using Sample.Functions.Encryption;
-using System.IO;
 
 [assembly: FunctionsStartup(typeof(Sample.Functions.Startup))]
 
